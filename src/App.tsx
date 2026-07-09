@@ -1,188 +1,314 @@
-import { ArrowRight, BadgeCheck, Megaphone, Search, Sparkles, Store, Tags } from 'lucide-react';
+import {
+  ArrowRight,
+  BadgeCheck,
+  Heart,
+  MapPin,
+  Search,
+  ShoppingBag,
+  Sparkles,
+  Star,
+  Store,
+} from 'lucide-react';
 
 const categories = [
-  'Мёд и продукты пасеки',
-  'Чай и травяные сборы',
-  'Мыло и натуральный уход',
-  'Свечи и аромат для дома',
-  'Ручная работа и декор',
-  'Сладости и фермерское',
-  'Украшения и аксессуары',
-  'Подарочные наборы',
-];
-
-const tariffs = [
   {
-    name: 'Старт',
-    price: '390₽',
-    description: 'Для мастеров и небольших производителей, которые хотят попробовать онлайн-витрину.',
-    features: ['до 10 товаров', 'базовая страница бренда', 'заявки от покупателей', 'отзывы'],
+    name: 'Мёд и пасека',
+    description: 'Мёд, крем-мёд, воск, свечи, подарочные наборы от пасечников.',
   },
   {
-    name: 'База',
-    price: '990₽',
-    description: 'Основной тариф для активных локальных брендов с регулярным ассортиментом.',
-    features: ['до 50 товаров', 'расширенная витрина', 'статистика просмотров', 'акции и подборки'],
-    highlighted: true,
+    name: 'Чай и травы',
+    description: 'Авторские чайные сборы, травы, напитки и локальные вкусы.',
   },
   {
-    name: 'Бренд',
-    price: '1990₽',
-    description: 'Для производителей, которым нужна более сильная видимость и полноценная бренд-страница.',
-    features: ['до 150 товаров', 'приоритет в каталоге', 'промокоды', 'расширенная аналитика'],
+    name: 'Мыло и уход',
+    description: 'Натуральное мыло, косметика, уходовые средства ручной работы.',
+  },
+  {
+    name: 'Свечи и уют',
+    description: 'Свечи, ароматы, декор и товары для атмосферного дома.',
+  },
+  {
+    name: 'Сладости',
+    description: 'Домашние десерты, конфеты, пастила, варенье и крафтовые лакомства.',
+  },
+  {
+    name: 'Ручная работа',
+    description: 'Украшения, текстиль, игрушки, керамика, декор и авторские изделия.',
   },
 ];
 
-const promoFormats = [
-  'Место в подборке',
-  'Товар в топе категории',
-  'Баннер на главной',
-  'Участие в сезонной коллекции',
-  'Раздел «Бренд недели»',
-  'Продвижение к праздникам',
+const products = [
+  {
+    title: 'Липовый мёд в стекле',
+    brand: 'Пасека Ивановых',
+    city: 'Вологодская область',
+    price: 'от 690₽',
+    tag: 'Хит сезона',
+  },
+  {
+    title: 'Травяной чай «Северный вечер»',
+    brand: 'Травы Севера',
+    city: 'Вологда',
+    price: 'от 420₽',
+    tag: 'К чаю',
+  },
+  {
+    title: 'Натуральное мыло с лавандой',
+    brand: 'Мыльная мастерская',
+    city: 'Ярославль',
+    price: 'от 280₽',
+    tag: 'Ручная работа',
+  },
+  {
+    title: 'Подарочный набор свечей',
+    brand: 'Тёплый дом',
+    city: 'Кострома',
+    price: 'от 1490₽',
+    tag: 'Подарок',
+  },
+];
+
+const brands = [
+  {
+    name: 'Пасека Ивановых',
+    category: 'Мёд и продукты пасеки',
+    city: 'Вологодская область',
+    text: 'Семейная пасека с натуральным мёдом, восковыми свечами и подарочными наборами.',
+  },
+  {
+    name: 'Травы Севера',
+    category: 'Чай и травяные сборы',
+    city: 'Вологда',
+    text: 'Авторские чайные сборы, созданные из северных трав и ягод.',
+  },
+  {
+    name: 'Тёплый дом',
+    category: 'Свечи и декор',
+    city: 'Кострома',
+    text: 'Свечи ручной работы, ароматы для дома и уютные подарочные наборы.',
+  },
+];
+
+const steps = [
+  'Выберите категорию или найдите товар через поиск.',
+  'Изучите карточку товара и страницу бренда.',
+  'Свяжитесь с продавцом напрямую удобным способом.',
+  'Оплату, упаковку и доставку согласуйте с продавцом.',
 ];
 
 export function App() {
   return (
     <main>
-      <section className="hero">
+      <section className="hero buyerHero">
         <nav className="nav">
-          <div className="logo">Крафтерра</div>
+          <a className="logo" href="#top" aria-label="Крафтерра">
+            Крафтерра
+          </a>
           <div className="navLinks">
-            <a href="#categories">Категории</a>
-            <a href="#tariffs">Тарифы</a>
-            <a href="#promo">Продвижение</a>
+            <a href="#catalog">Каталог</a>
+            <a href="#brands">Бренды</a>
+            <a href="#how">Как купить</a>
+            <a href="#seller-coming">Продавцам</a>
           </div>
-          <a className="navButton" href="#seller">Стать продавцом</a>
+          <a className="navButton" href="#catalog">
+            Смотреть товары
+          </a>
         </nav>
 
-        <div className="heroGrid">
+        <div className="heroGrid" id="top">
           <div className="heroContent">
             <div className="eyebrow">
-              <Sparkles size={18} /> территория крафта и локальных брендов
+              <Sparkles size={18} /> витрина крафтовых товаров
             </div>
-            <h1>Онлайн-витрина крафтовых товаров от настоящих производителей</h1>
+            <h1>Найдите товары с душой от локальных производителей</h1>
             <p>
-              Крафтерра помогает пасечникам, мыловарам, рукодельницам, чайным мастерам,
-              фермерам и малым брендам красиво представить товары онлайн и получать заявки от покупателей.
+              Крафтерра собирает в одном месте мёд, чай, мыло, свечи, сладости,
+              подарки, декор и ручную работу от настоящих мастеров и малых брендов.
             </p>
-            <div className="heroActions">
-              <a className="primaryButton" href="#seller">
-                Разместить бренд <ArrowRight size={18} />
-              </a>
-              <a className="secondaryButton" href="#categories">Смотреть категории</a>
+
+            <div className="searchPanel" role="search">
+              <Search size={20} />
+              <span>Что ищем? Например: мёд, свечи, чай, подарок</span>
+              <button type="button">Найти</button>
             </div>
+
+            <div className="heroActions">
+              <a className="primaryButton" href="#catalog">
+                Перейти в каталог <ArrowRight size={18} />
+              </a>
+              <a className="secondaryButton" href="#brands">
+                Смотреть бренды
+              </a>
+            </div>
+
             <div className="trustBar">
-              <span>30 дней бесплатно</span>
-              <span>без комиссии с заказов</span>
-              <span>доставка на стороне бренда</span>
+              <span>локальные бренды</span>
+              <span>крафтовые товары</span>
+              <span>связь напрямую с продавцом</span>
             </div>
           </div>
 
-          <div className="heroCard">
-            <div className="productMock mainProduct">
+          <div className="heroShowcase" aria-label="Примеры товаров">
+            <div className="showcaseBadge">Подборка недели</div>
+            <div className="showcaseProduct large">
               <span>Пасека Ивановых</span>
               <strong>Липовый мёд</strong>
-              <em>Вологодская область</em>
+              <em>от 690₽</em>
             </div>
-            <div className="productMock floating one">Свечи ручной работы</div>
-            <div className="productMock floating two">Травяной чай</div>
-            <div className="productMock floating three">Натуральное мыло</div>
+            <div className="showcaseProduct small top">
+              <span>Травяной чай</span>
+              <strong>Северный вечер</strong>
+            </div>
+            <div className="showcaseProduct small bottom">
+              <span>Подарок</span>
+              <strong>Свечи ручной работы</strong>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section intro">
+      <section className="section intro buyerIntro">
         <div>
-          <div className="sectionLabel">Не Авито</div>
-          <h2>Это не доска объявлений, а брендовая витрина</h2>
+          <div className="sectionLabel">Для покупателей</div>
+          <h2>Это не доска объявлений, а красивая витрина брендов</h2>
         </div>
         <p>
-          На Крафтерре продавец выглядит не как случайное объявление, а как малый бренд:
-          со страницей, историей, ассортиментом, карточками товаров, отзывами и продвижением внутри платформы.
+          Здесь покупатель видит не случайное объявление, а товар, производителя,
+          город, историю бренда, ассортимент и понятный способ связаться с продавцом.
         </p>
       </section>
 
-      <section className="features">
-        <div className="featureCard">
-          <Store />
-          <h3>Для продавцов</h3>
-          <p>Страница бренда, каталог товаров, заявки покупателей, отзывы и статистика без сложной разработки сайта.</p>
-        </div>
-        <div className="featureCard">
-          <Search />
-          <h3>Для покупателей</h3>
-          <p>Удобный поиск крафтовых товаров, локальных производителей и подарков напрямую от создателей.</p>
-        </div>
-        <div className="featureCard">
-          <Megaphone />
-          <h3>Для продвижения</h3>
-          <p>Подборки, топ категорий, сезонные коллекции, баннеры и специальные рекламные места.</p>
-        </div>
-      </section>
-
-      <section className="section" id="categories">
+      <section className="section" id="catalog">
         <div className="sectionHeader">
-          <div className="sectionLabel">Категории</div>
-          <h2>С чего можно начать каталог</h2>
-        </div>
-        <div className="categoryGrid">
-          {categories.map((category) => (
-            <div className="categoryCard" key={category}>{category}</div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section tariffs" id="tariffs">
-        <div className="sectionHeader centered">
-          <div className="sectionLabel">Монетизация</div>
-          <h2>Тарифы для продавцов</h2>
-          <p>Первые 30 дней бесплатно. Комиссии с заказов нет, потому что оплаты проходят напрямую между покупателем и продавцом.</p>
-        </div>
-        <div className="tariffGrid">
-          {tariffs.map((tariff) => (
-            <div className={`tariffCard ${tariff.highlighted ? 'highlighted' : ''}`} key={tariff.name}>
-              {tariff.highlighted && <div className="badge">Основной тариф</div>}
-              <h3>{tariff.name}</h3>
-              <div className="price">{tariff.price}<span>/мес</span></div>
-              <p>{tariff.description}</p>
-              <ul>
-                {tariff.features.map((feature) => (
-                  <li key={feature}><BadgeCheck size={18} /> {feature}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section promo" id="promo">
-        <div className="sectionHeader">
-          <div className="sectionLabel">Реклама внутри платформы</div>
-          <h2>Платное продвижение для брендов</h2>
-          <p>Отдельный источник дохода платформы — видимость в каталоге, подборках и сезонных разделах.</p>
-        </div>
-        <div className="promoGrid">
-          {promoFormats.map((format) => (
-            <div className="promoCard" key={format}>
-              <Tags size={18} />
-              <span>{format}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="seller" id="seller">
-        <div>
-          <div className="sectionLabel">Для брендов</div>
-          <h2>Создайте витрину своего бренда на Крафтерре</h2>
+          <div>
+            <div className="sectionLabel">Каталог</div>
+            <h2>Категории для первого запуска</h2>
+          </div>
           <p>
-            Вы занимаетесь продуктом, клиентом, упаковкой и доставкой. Крафтерра даёт красивую онлайн-витрину,
-            каталог, заявки и инструменты продвижения.
+            Стартуем с понятных крафтовых направлений, где важны качество, доверие,
+            история производителя и красивая подача.
           </p>
         </div>
-        <a className="primaryButton dark" href="#tariffs">
-          Выбрать тариф <ArrowRight size={18} />
+        <div className="categoryGrid buyerCategoryGrid">
+          {categories.map((category) => (
+            <article className="categoryCard buyerCategoryCard" key={category.name}>
+              <ShoppingBag size={24} />
+              <h3>{category.name}</h3>
+              <p>{category.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section featuredProducts">
+        <div className="sectionHeader">
+          <div>
+            <div className="sectionLabel">Витрина</div>
+            <h2>Пример карточек товаров</h2>
+          </div>
+          <p>
+            На первом этапе это демонстрационные карточки, чтобы сразу собрать структуру будущего каталога.
+          </p>
+        </div>
+        <div className="productGrid">
+          {products.map((product) => (
+            <article className="productCard" key={product.title}>
+              <div className="productImage">
+                <span>{product.tag}</span>
+              </div>
+              <div className="productBody">
+                <h3>{product.title}</h3>
+                <div className="productMeta">
+                  <Store size={16} /> {product.brand}
+                </div>
+                <div className="productMeta">
+                  <MapPin size={16} /> {product.city}
+                </div>
+                <div className="productFooter">
+                  <strong>{product.price}</strong>
+                  <button type="button">Связаться</button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" id="brands">
+        <div className="sectionHeader">
+          <div>
+            <div className="sectionLabel">Бренды</div>
+            <h2>Покупатель выбирает не только товар, но и производителя</h2>
+          </div>
+          <p>
+            У каждого продавца должна быть отдельная страница бренда: кто он, где находится,
+            что производит и как с ним связаться.
+          </p>
+        </div>
+        <div className="brandGrid">
+          {brands.map((brand) => (
+            <article className="brandCard" key={brand.name}>
+              <div className="brandAvatar">{brand.name.slice(0, 1)}</div>
+              <div>
+                <div className="brandCategory">{brand.category}</div>
+                <h3>{brand.name}</h3>
+                <p>{brand.text}</p>
+                <div className="productMeta">
+                  <MapPin size={16} /> {brand.city}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section how" id="how">
+        <div className="sectionHeader centered">
+          <div className="sectionLabel">Сценарий покупки</div>
+          <h2>Как покупатель будет пользоваться Крафтеррой</h2>
+          <p>
+            Крафтерра помогает найти товар и продавца. Оплата, упаковка и доставка остаются на стороне бренда.
+          </p>
+        </div>
+        <div className="stepsGrid">
+          {steps.map((step, index) => (
+            <div className="stepCard" key={step}>
+              <span>{index + 1}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section trustSection">
+        <div className="trustCard">
+          <Heart size={34} />
+          <h3>Товары с историей</h3>
+          <p>Покупатель понимает, кто создал продукт, где он сделан и почему ему можно доверять.</p>
+        </div>
+        <div className="trustCard">
+          <Star size={34} />
+          <h3>Отбор и эстетика</h3>
+          <p>Платформа не должна выглядеть как хаотичная лента объявлений: важны модерация и единый стиль.</p>
+        </div>
+        <div className="trustCard">
+          <BadgeCheck size={34} />
+          <h3>Прямой контакт</h3>
+          <p>Покупатель связывается с брендом напрямую и сам согласует оплату, получение или доставку.</p>
+        </div>
+      </section>
+
+      <section className="seller" id="seller-coming">
+        <div>
+          <div className="sectionLabel">Вторая часть проекта</div>
+          <h2>После покупательской витрины создадим кабинет продавца</h2>
+          <p>
+            Там продавцы смогут добавлять бренд, товары, контакты, условия доставки, управлять заявками,
+            подключать тариф и покупать продвижение внутри Крафтерры.
+          </p>
+        </div>
+        <a className="primaryButton dark" href="#catalog">
+          Вернуться к витрине <ArrowRight size={18} />
         </a>
       </section>
     </main>
