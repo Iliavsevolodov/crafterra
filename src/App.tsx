@@ -181,8 +181,8 @@ export function App() {
             каталог, заявки и инструменты продвижения.
           </p>
         </div>
-        <a className="primaryButton dark" href="mailto:hello@crafterra.ru">
-          Подать заявку <ArrowRight size={18} />
+        <a className="primaryButton dark" href="#tariffs">
+          Выбрать тариф <ArrowRight size={18} />
         </a>
       </section>
     </main>
